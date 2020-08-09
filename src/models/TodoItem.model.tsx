@@ -1,16 +1,20 @@
 export interface ITodoItem {
-  id: string;
+  id: number;
 
   descr: string;
+  num: number;
 }
 
 export default class TodoItem implements ITodoItem {
-  id: string;
+  id: number;
 
   descr: string;
+  num: number;
 
-  constructor(id: string, descr: string) {
+  constructor(id: number, descr: string, num: number) {
     this.id = id;
+
     this.descr = descr;
+    this.num = num;
   }
 }
