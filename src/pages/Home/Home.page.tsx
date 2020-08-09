@@ -14,9 +14,9 @@ const HomePage: React.FC = () => {
 
         <div className="home__todo-list todo-list">
           <div className="todo-list__todo-item todo-item">
-            <div className="todo-item__title"></div>
+            <div className="todo-item__title">Задача №1</div>
 
-            <div className="todo-item__descr"></div>
+            <div className="todo-item__descr">Описание</div>
 
             <div className="todo-item__features-list features-list">
               <div className="features-list__features-item">
