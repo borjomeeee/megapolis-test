@@ -10,6 +10,7 @@ import CommonButtonComponent from "../../components/Common/CommonButton.componen
 import CommonInputComponent from "../../components/Common/CommonInput.component";
 
 import { editTaskAction, removeTaskAction } from "../../store/actions";
+import { isNull } from "util";
 
 type ICurrTask = null | ITodoItem;
 
@@ -31,7 +32,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
   const [inputValue, setInputValue] = useState(currTask?.descr || "");
   const [inputError, setInputError] = useState("");
 
-  if (Number.isNaN(id) || tasks.length < id || id < 0 || !currTask) {
+  if (isNull(currTask)) {
     history.push("/");
   }
 
@@ -53,6 +54,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
 
   const handleRemoveTask = () => {
     removeTaskAction(+id);
+    history.push("/");
   };
 
   return (
