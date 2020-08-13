@@ -1,36 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
 
-const HomePage: React.FC = () => {
+import CommonButtonComponent from "../../components/Common/CommonButton.component";
+import TodoListComponent from "../../components/Todo/TodoList.component";
+import AddModalComponent from "../../components/Modal/AddModal.component";
+
+import { createTaskAction } from "../../store/actions";
+
+const HomePage: React.FC<ConnectedProps<typeof connector>> = ({
+  createTaskAction,
+}) => {
+  const [visibleAddModal, setVisibleAddModal] = useState(false);
+
   return (
-    <div className="content">
-      <div className="home">
-        <div className="home__topline topline">
-          <div className="topline__title">Список задач</div>
+    <>
+      {visibleAddModal && (
+        <AddModalComponent
+          onCreateTask={createTaskAction}
+          onCloseModal={setVisibleAddModal.bind(null, false)}
+        />
+      )}
+      <div className="content">
+        <div className="page home-page">
+          <div className="container">
+            <div className="home-page__topline topline">
+              <div className="page__title topline__title">Список задач</div>
 
-          <div className="topline__button">
-            <button>Добавить</button>
-          </div>
-        </div>
-
-        <div className="home__todo-list todo-list">
-          <div className="todo-list__todo-item todo-item">
-            <div className="todo-item__title">Задача №1</div>
-
-            <div className="todo-item__descr">Описание</div>
-
-            <div className="todo-item__features-list features-list">
-              <div className="features-list__features-item">
-                <span>Изменить</span>
+              <div className="topline__button">
+                <CommonButtonComponent
+                  color="green"
+                  text="Добавить"
+                  onClick={setVisibleAddModal.bind(null, true)}
+                />
               </div>
-              <div className="features-list__features-item">
-                <span>Удалить</span>
-              </div>
+            </div>
+
+            <div className="home-page__todo-list">
+              <TodoListComponent />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default HomePage;
+const mapDispatchToProps = { createTaskAction };
+
+const connector = connect(null, mapDispatchToProps);
+
+export default connector(HomePage);

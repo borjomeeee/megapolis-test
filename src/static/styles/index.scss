@@ -1,0 +1,40 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+@import "./mixins.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Roboto";
+
+  list-style-type: none;
+  box-sizing: border-box;
+
+  outline: none;
+}
+
+button,
+button:focus {
+  outline: none;
+}
+
+.page {
+  margin-top: 40px;
+
+  &__title {
+    font-weight: bold;
+    font-size: 32px;
+  }
+}
+
+@import "../../pages/Home/Home.page.scss";
+@import "../../pages/TodoItem/TodoItem.page.scss";
+
+@import "../../components/Common/CommonButton.component.scss";
+@import "../../components/Common/CommonInput.component.scss";
+
+@import "../../components/Modal/AddModal.component.scss";
+
+@import "../../components/Todo/TodoList.component.scss";
+@import "../../components/Todo/TodoListItem.component.scss";

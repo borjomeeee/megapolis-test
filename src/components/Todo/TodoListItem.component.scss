@@ -1,0 +1,20 @@
+.todo-item {
+  width: 100%;
+
+  &__col {
+    padding: 10px 20px;
+    border: 1px solid $medium-gray;
+  }
+
+  &__change-container {
+    display: flex;
+  }
+
+  &__icon {
+    cursor: pointer;
+
+    &_remove {
+      margin-left: 28px;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+.add-modal {
+  position: absolute;
+
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+
+  z-index: 1000;
+
+  background-color: rgba($light-gray, 0.8);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    min-width: 462px;
+
+    background-color: $white;
+
+    padding: 32px;
+  }
+
+  &__topline {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__input {
+    margin-top: 12px;
+  }
+
+  &__create-container {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__close-container {
+    cursor: pointer;
+  }
+}

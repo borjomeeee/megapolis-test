@@ -1,11 +1,50 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { ITodoItem } from "../../models/TodoItem.model";
 
-interface ITodoListItemComponent extends ITodoItem {}
+import { ReactComponent as EditIcon } from "../../static/icons/edit.svg";
+import { ReactComponent as RemoveIcon } from "../../static/icons/remove.svg";
 
-const TodoListItemComponent: React.FC<ITodoListItemComponent> = () => {
-  return <></>;
+interface ITodoListItemComponent extends React.ComponentProps<"tr"> {
+  item: ITodoItem;
+
+  onEdit: (id: number) => void;
+  onRemove: (id: number) => void;
+}
+
+const TodoListItemComponent: React.FC<ITodoListItemComponent> = ({
+  item,
+
+  onEdit,
+  onRemove,
+
+  ...props
+}) => {
+  const { id, descr } = item;
+
+  const editHandler = useCallback(() => onEdit(id), [id, onEdit]);
+  const removeHandler = useCallback(() => onRemove(id), [id, onRemove]);
+
+  return (
+    <tr {...props} className={`todo-item ${props.className}`}>
+      <td className="todo-item__col">{`Задача №${item.id}`}</td>
+
+      <td width="70%" className="todo-item__col">
+        {descr}
+      </td>
+
+      <td width="100px" className="todo-item__col">
+        <div className="todo-item__change-container">
+          <div className="todo-item__icon todo-item__icon_edit">
+            <EditIcon onClick={editHandler} />
+          </div>
+          <div className="todo-item__icon todo-item__icon_remove">
+            <RemoveIcon onClick={removeHandler} />
+          </div>
+        </div>
+      </td>
+    </tr>
+  );
 };
 
 export default TodoListItemComponent;

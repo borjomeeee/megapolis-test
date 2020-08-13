@@ -17,7 +17,7 @@ const AppNavigation: React.FC = () => {
           <Pages.HomePage />
         </Route>
 
-        <Route path="/note/:id" exact>
+        <Route path="/items/:id" exact>
           <Pages.TodoItemPage />
         </Route>
 

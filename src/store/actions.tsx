@@ -21,10 +21,10 @@ export const downloadTasksFailedAction = (errMsg: string) =>
   } as const);
 
 // Create
-export const createTaskAction = (descr: string, nextIndex: number) =>
+export const createTaskAction = (descr: string) =>
   ({
     type: TYPES.CREATE_TASK,
-    payload: { descr, nextIndex },
+    payload: { descr },
   } as const);
 
 export const createTaskSuccessAction = (task: ITodoItem) =>
@@ -65,7 +65,7 @@ export const removeTaskAction = (id: number) =>
     payload: { id },
   } as const);
 
-export const removeTaskSuccessAction = (id: string) =>
+export const removeTaskSuccessAction = (id: number) =>
   ({
     type: TYPES.REMOVE_TASK_SUCCESS,
     payload: { id },

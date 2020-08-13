@@ -1,0 +1,27 @@
+.common-button {
+  min-width: 148px;
+
+  padding: 0.5em 1em;
+
+  border-radius: 4px;
+
+  background-color: $white;
+
+  font-size: 14px;
+
+  transition: all 0.2s;
+
+  cursor: pointer;
+
+  &_red {
+    @include button($red);
+  }
+
+  &_blue {
+    @include button($blue);
+  }
+
+  &_green {
+    @include button($green);
+  }
+}

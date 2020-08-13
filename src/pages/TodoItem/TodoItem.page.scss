@@ -1,0 +1,28 @@
+.todoitem-page {
+  &__topline {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__todo-input {
+    margin-top: 22px;
+  }
+
+  .todo-input {
+    &__label {
+      font-size: 14px;
+      color: $dark;
+    }
+
+    &__container {
+      margin-top: 16px;
+      max-width: 400px;
+    }
+  }
+
+  &__button {
+    margin-top: 34px;
+  }
+}

@@ -1,0 +1,11 @@
+.home-page {
+  &__topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__todo-list {
+    margin-top: 22px;
+  }
+}
