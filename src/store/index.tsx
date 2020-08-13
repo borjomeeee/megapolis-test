@@ -15,6 +15,7 @@ export const initialState = {
     { id: 3, descr: "Описание 3" },
   ] as ITodoItem[],
   error: "",
+  isLoading: true,
 };
 export type IInitialState = typeof initialState;
 

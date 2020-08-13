@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect, ConnectedProps } from "react-redux";
 
 import CommonButtonComponent from "../../components/Common/CommonButton.component";
@@ -6,8 +6,11 @@ import TodoListComponent from "../../components/Todo/TodoList.component";
 import AddModalComponent from "../../components/Modal/AddModal.component";
 
 import { createTaskAction } from "../../store/actions";
+import { IInitialState } from "../../store";
 
 const HomePage: React.FC<ConnectedProps<typeof connector>> = ({
+  isLoading,
+
   createTaskAction,
 }) => {
   const [visibleAddModal, setVisibleAddModal] = useState(false);
@@ -36,6 +39,7 @@ const HomePage: React.FC<ConnectedProps<typeof connector>> = ({
                   color="green"
                   text="Добавить"
                   onClick={setVisibleAddModal.bind(null, true)}
+                  disabled={isLoading}
                 />
               </div>
             </div>
@@ -50,8 +54,12 @@ const HomePage: React.FC<ConnectedProps<typeof connector>> = ({
   );
 };
 
+const mapStateToProps = (state: IInitialState) => ({
+  isLoading: state.isLoading,
+});
+
 const mapDispatchToProps = { createTaskAction };
 
-const connector = connect(null, mapDispatchToProps);
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 export default connector(HomePage);

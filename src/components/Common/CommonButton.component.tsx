@@ -5,6 +5,7 @@ interface ICommonButtonComponent {
   color: "red" | "blue" | "green";
 
   onClick: () => void;
+  disabled?: boolean;
 }
 
 const CommonButtonComponent: React.FC<ICommonButtonComponent> = ({
@@ -12,11 +13,15 @@ const CommonButtonComponent: React.FC<ICommonButtonComponent> = ({
   color,
 
   onClick,
+  disabled,
 }) => {
   return (
     <button
-      className={`common-button common-button_${color}`}
+      className={`common-button common-button_${color} ${
+        disabled ? "common-button_disabled" : ""
+      }`}
       onClick={onClick}
+      disabled={disabled}
     >
       {text}
     </button>

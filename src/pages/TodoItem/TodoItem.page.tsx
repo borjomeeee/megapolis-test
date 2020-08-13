@@ -16,6 +16,7 @@ type ICurrTask = null | ITodoItem;
 
 const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
   tasks,
+  isLoading,
 
   editTaskAction,
   removeTaskAction,
@@ -41,6 +42,10 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
   const handleChangeInputValue = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    if (inputError) {
+      setInputError("");
+    }
+
     setInputValue(event.target.value);
   };
 
@@ -71,6 +76,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
                 color="green"
                 text="Удалить"
                 onClick={handleRemoveTask}
+                disabled={isLoading}
               />
             </div>
           </div>
@@ -94,12 +100,14 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
                 color="blue"
                 text="Вернуться в список"
                 onClick={handleGoBack}
+                disabled={isLoading}
               />
             ) : (
               <CommonButtonComponent
                 color="blue"
                 text="Сохранить"
                 onClick={handleSaveTask}
+                disabled={isLoading}
               />
             )}
           </div>
@@ -111,6 +119,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
 
 const mapStateToProps = (state: IInitialState) => ({
   tasks: state.tasks,
+  isLoading: state.isLoading,
 });
 
 const mapDispatchToProps = { editTaskAction, removeTaskAction };

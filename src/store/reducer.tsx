@@ -1,11 +1,7 @@
 import { initialState, IInitialState } from ".";
 
 import { IAction } from "./actionsTypes";
-import {
-  CREATE_TASK_SUCCESS,
-  EDIT_TASK_SUCCESS,
-  REMOVE_TASK_SUCCESS,
-} from "./types";
+import * as ACTIONS from "./types";
 
 import { ITodoItem } from "../models/TodoItem.model";
 
@@ -14,9 +10,27 @@ export default (
   action: IAction
 ): IInitialState => {
   switch (action.type) {
-    case CREATE_TASK_SUCCESS:
-      return { ...state, tasks: [...state.tasks, action.payload.task] };
-    case EDIT_TASK_SUCCESS:
+    case ACTIONS.DOWNLOAD_TASKS:
+    case ACTIONS.CREATE_TASK:
+    case ACTIONS.EDIT_TASK:
+    case ACTIONS.REMOVE_TASK:
+      return { ...state, isLoading: true };
+
+    case ACTIONS.DOWNLOAD_TASKS_FAILED:
+    case ACTIONS.CREATE_TASK_FAILED:
+    case ACTIONS.EDIT_TASK_FAILED:
+    case ACTIONS.REMOVE_TASK_FAILED:
+      return { ...state, error: action.payload.errMsg, isLoading: false };
+
+    case ACTIONS.DOWNLOAD_TASKS_SUCCESS:
+      return { ...state, tasks: action.payload.tasks, isLoading: false };
+    case ACTIONS.CREATE_TASK_SUCCESS:
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload.task],
+        isLoading: false,
+      };
+    case ACTIONS.EDIT_TASK_SUCCESS:
       return {
         ...state,
         tasks: state.tasks.map((item: ITodoItem) => {
@@ -25,13 +39,15 @@ export default (
           }
           return item;
         }),
+        isLoading: false,
       };
-    case REMOVE_TASK_SUCCESS:
+    case ACTIONS.REMOVE_TASK_SUCCESS:
       return {
         ...state,
         tasks: state.tasks.filter(
           (item: ITodoItem) => item.id !== action.payload.id
         ),
+        isLoading: false,
       };
     default:
       return state;

@@ -24,4 +24,11 @@
   &_green {
     @include button($green);
   }
+
+  &:disabled {
+    border-color: $medium-gray;
+    background-color: $medium-gray;
+
+    color: $white;
+  }
 }

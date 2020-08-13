@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   BrowserRouter as Router,
@@ -9,7 +9,19 @@ import {
 
 import * as Pages from "../pages";
 
-const AppNavigation: React.FC = () => {
+import { IInitialState } from "../store";
+
+import { downloadTasksAction } from "../store/actions";
+import { connect, ConnectedProps } from "react-redux";
+
+const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({
+  isLoading,
+  downloadTasksAction,
+}) => {
+  useEffect(() => {
+    downloadTasksAction();
+  }, []);
+
   return (
     <Router>
       <Switch>
@@ -29,4 +41,12 @@ const AppNavigation: React.FC = () => {
   );
 };
 
-export default AppNavigation;
+const mapStateToProps = (state: IInitialState) => ({
+  isLoading: state.isLoading,
+});
+
+const mapDispatchToProps = { downloadTasksAction };
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+export default connector(AppNavigation);
