@@ -17,6 +17,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
   tasks,
 
   editTaskAction,
+  removeTaskAction,
 }) => {
   const { id } = useParams();
   const history = useHistory();
@@ -51,9 +52,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
   };
 
   const handleRemoveTask = () => {
-    history.push("/");
-
-    removeTaskAction(id);
+    removeTaskAction(+id);
   };
 
   return (
@@ -112,7 +111,7 @@ const mapStateToProps = (state: IInitialState) => ({
   tasks: state.tasks,
 });
 
-const mapDispatchToProps = { editTaskAction };
+const mapDispatchToProps = { editTaskAction, removeTaskAction };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 

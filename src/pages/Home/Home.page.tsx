@@ -12,11 +12,16 @@ const HomePage: React.FC<ConnectedProps<typeof connector>> = ({
 }) => {
   const [visibleAddModal, setVisibleAddModal] = useState(false);
 
+  const handleCreateTask = (descr: string) => {
+    createTaskAction(descr);
+    setVisibleAddModal(false);
+  };
+
   return (
     <>
       {visibleAddModal && (
         <AddModalComponent
-          onCreateTask={createTaskAction}
+          onCreateTask={handleCreateTask}
           onCloseModal={setVisibleAddModal.bind(null, false)}
         />
       )}

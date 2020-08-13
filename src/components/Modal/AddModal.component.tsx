@@ -15,7 +15,7 @@ const AddModalComponent: React.FC<IAddModalComponent> = ({
   onCloseModal,
 }) => {
   const [error, setError] = useState("");
-  const inputRef = useRef<null | HTMLInputElement>(null);
+  let inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleAddTask = () => {
     const value = inputRef.current?.value || "";
@@ -39,7 +39,7 @@ const AddModalComponent: React.FC<IAddModalComponent> = ({
         </div>
 
         <div className="add-modal__input">
-          <CommonInputComponent />
+          <CommonInputComponent ref={inputRef} />
         </div>
 
         <div className="add-modal__error">{error}</div>
