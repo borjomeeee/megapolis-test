@@ -21,7 +21,7 @@ const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({
 }) => {
   useEffect(() => {
     downloadTasksAction();
-  }, []);
+  }, [downloadTasksAction]);
 
   return (
     <Router>

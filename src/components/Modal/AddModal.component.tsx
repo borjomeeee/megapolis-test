@@ -35,7 +35,7 @@ const AddModalComponent: React.FC<IAddModalComponent> = ({
       // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [modalRef]);
+  }, [modalRef, onCloseModal]);
 
   const handleAddTask = () => {
     const value = inputRef.current?.value || "";

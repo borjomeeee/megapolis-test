@@ -1,0 +1,23 @@
+@media screen and (max-width: 500px) {
+  .home-page {
+    &__topline {
+      display: block;
+    }
+
+    .topline {
+      &__button {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  .todoitem-page {
+    &__topline {
+      display: block;
+    }
+
+    &__remove {
+      margin-top: 15px;
+    }
+  }
+}
