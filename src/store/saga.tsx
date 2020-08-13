@@ -1,35 +1,121 @@
-import { takeLeading, put } from "redux-saga/effects";
+import axios from "axios";
+import { takeLeading, put, call } from "redux-saga/effects";
 
 import { DOWNLOAD_TASKS, CREATE_TASK, EDIT_TASK, REMOVE_TASK } from "./types";
-import {
-  downloadTasksSuccessAction,
-  createTaskSuccessAction,
-  editTaskSuccessAction,
-  removeTaskSuccessAction,
-  createTaskAction,
-  editTaskAction,
-  removeTaskAction,
-} from "./actions";
+import * as ACTIONS from "./actions";
+
+import { ITodoItem } from "../models/TodoItem.model";
 
 function* downloadTasksSaga() {
-  yield put(
-    downloadTasksSuccessAction([
-      { id: 1, descr: "Описание 1" },
-      { id: 2, descr: "Описание 2" },
-    ])
-  );
+  try {
+    const res = yield call(axios.get, "https://test.megapolis-it.ru/api/list");
+    const data = yield res.data;
+
+    if (data.success) {
+      if (Array.isArray(data.data)) {
+        yield put(
+          ACTIONS.downloadTasksSuccessAction(
+            data.data.map((item: any) => ({
+              id: item.id,
+              descr: item.title,
+            })) as ITodoItem[]
+          )
+        );
+      } else {
+        yield put(
+          ACTIONS.downloadTasksFailedAction(
+            "Не удалось обработать данные с сервера!"
+          )
+        );
+      }
+    } else {
+      yield put(ACTIONS.downloadTasksFailedAction(data.error));
+    }
+  } catch {
+    yield put(
+      ACTIONS.downloadTasksFailedAction(
+        "При скачивании данных с сервера произошла ошибка!"
+      )
+    );
+  }
 }
 
-function* createTaskSaga({ payload }: ReturnType<typeof createTaskAction>) {
-  yield put(createTaskSuccessAction({ id: 3, descr: payload.descr }));
+function* createTaskSaga({
+  payload,
+}: ReturnType<typeof ACTIONS.createTaskAction>) {
+  try {
+    const res = yield call(
+      axios.post,
+      "https://test.megapolis-it.ru/api/list",
+      { title: payload.descr }
+    );
+    const data = yield res.data;
+
+    if (data.success) {
+      yield put(
+        ACTIONS.createTaskSuccessAction({
+          id: +data.id,
+          descr: payload.descr,
+        })
+      );
+    } else {
+      yield put(ACTIONS.createTaskFailedAction(data.error));
+    }
+  } catch {
+    yield put(
+      ACTIONS.createTaskFailedAction(
+        "В результате обработки запроса произошла ошибка!"
+      )
+    );
+  }
 }
 
-function* editTaskSaga({ payload }: ReturnType<typeof editTaskAction>) {
-  yield put(editTaskSuccessAction(payload.id, payload.descr));
+function* editTaskSaga({ payload }: ReturnType<typeof ACTIONS.editTaskAction>) {
+  try {
+    const res = yield call(
+      axios.post,
+      `https://test.megapolis-it.ru/api/list/${payload.id}`,
+      { title: payload.descr }
+    );
+    const data = yield res.data;
+
+    if (data.success) {
+      yield put(ACTIONS.editTaskSuccessAction(payload.id, payload.descr));
+    } else {
+      yield put(ACTIONS.removeTaskFailedAction(data.error));
+    }
+  } catch {
+    yield put(
+      ACTIONS.removeTaskFailedAction(
+        "В результате обработки запроса произошла ошибка!"
+      )
+    );
+  }
+  yield put(ACTIONS.editTaskSuccessAction(payload.id, payload.descr));
 }
 
-function* removeTaskSaga({ payload }: ReturnType<typeof removeTaskAction>) {
-  yield put(removeTaskSuccessAction(payload.id));
+function* removeTaskSaga({
+  payload,
+}: ReturnType<typeof ACTIONS.removeTaskAction>) {
+  try {
+    const res = yield call(
+      axios.delete,
+      `https://test.megapolis-it.ru/api/list/${payload.id}`
+    );
+    const data = yield res.data;
+
+    if (data.success) {
+      yield put(ACTIONS.removeTaskSuccessAction(payload.id));
+    } else {
+      yield put(ACTIONS.removeTaskFailedAction(data.error));
+    }
+  } catch {
+    yield put(
+      ACTIONS.removeTaskFailedAction(
+        "В результате обработки запроса произошла ошибка!"
+      )
+    );
+  }
 }
 
 export default function* rootSaga() {
