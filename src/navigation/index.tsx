@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { connect, ConnectedProps } from "react-redux";
 
 import {
   BrowserRouter as Router,
@@ -12,7 +13,7 @@ import * as Pages from "../pages";
 import { IInitialState } from "../store";
 
 import { downloadTasksAction } from "../store/actions";
-import { connect, ConnectedProps } from "react-redux";
+
 import LoadingBarComponent from "../components/Common/LoadingBar.component";
 
 const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({

@@ -22,9 +22,6 @@ const TodoListItemComponent: React.FC<ITodoListItemComponent> = ({
 }) => {
   const { id, descr } = item;
 
-  const editHandler = useCallback(() => onEdit(id), [id, onEdit]);
-  const removeHandler = useCallback(() => onRemove(id), [id, onRemove]);
-
   return (
     <tr {...props} className={`todo-item ${props.className}`}>
       <td className="todo-item__col">{`Задача №${item.id}`}</td>
@@ -36,10 +33,10 @@ const TodoListItemComponent: React.FC<ITodoListItemComponent> = ({
       <td width="100px" className="todo-item__col">
         <div className="todo-item__change-container">
           <div className="todo-item__icon todo-item__icon_edit">
-            <EditIcon onClick={editHandler} />
+            <EditIcon onClick={onEdit.bind(null, id)} />
           </div>
           <div className="todo-item__icon todo-item__icon_remove">
-            <RemoveIcon onClick={removeHandler} />
+            <RemoveIcon onClick={onRemove.bind(null, id)} />
           </div>
         </div>
       </td>

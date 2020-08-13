@@ -10,7 +10,6 @@ import CommonButtonComponent from "../../components/Common/CommonButton.componen
 import CommonInputComponent from "../../components/Common/CommonInput.component";
 
 import { editTaskAction, removeTaskAction } from "../../store/actions";
-import { isNull } from "util";
 
 type ICurrTask = null | ITodoItem;
 
@@ -33,7 +32,7 @@ const TodoItemPage: React.FC<ConnectedProps<typeof connector>> = ({
   const [inputValue, setInputValue] = useState(currTask?.descr || "");
   const [inputError, setInputError] = useState("");
 
-  if (isNull(currTask)) {
+  if (currTask === null) {
     history.push("/");
   }
 
