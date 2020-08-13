@@ -18,11 +18,19 @@ import LoadingBarComponent from "../components/Common/LoadingBar.component";
 
 const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({
   isLoading,
+  error,
+
   downloadTasksAction,
 }) => {
   useEffect(() => {
     downloadTasksAction();
   }, [downloadTasksAction]);
+
+  useEffect(() => {
+    if (error.length > 0) {
+      alert(error);
+    }
+  }, [error]);
 
   return (
     <Router>
@@ -46,6 +54,7 @@ const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({
 
 const mapStateToProps = (state: IInitialState) => ({
   isLoading: state.isLoading,
+  error: state.error,
 });
 
 const mapDispatchToProps = { downloadTasksAction };
