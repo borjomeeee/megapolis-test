@@ -1,0 +1,22 @@
+.loading {
+  position: absolute;
+
+  top: 0;
+  width: 100%;
+
+  background-color: $medium-gray;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+
+    height: 40px;
+
+    align-items: center;
+  }
+
+  &__title {
+    margin-left: 20px;
+    color: $black;
+  }
+}

@@ -13,6 +13,7 @@ import { IInitialState } from "../store";
 
 import { downloadTasksAction } from "../store/actions";
 import { connect, ConnectedProps } from "react-redux";
+import LoadingBarComponent from "../components/Common/LoadingBar.component";
 
 const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({
   isLoading,
@@ -24,6 +25,7 @@ const AppNavigation: React.FC<ConnectedProps<typeof connector>> = ({
 
   return (
     <Router>
+      {isLoading && <LoadingBarComponent />}
       <Switch>
         <Route path="/" exact>
           <Pages.HomePage />
