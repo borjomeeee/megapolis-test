@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import { ReactComponent as CloseIcon } from "../../static/icons/close.svg";
 
@@ -15,7 +15,27 @@ const AddModalComponent: React.FC<IAddModalComponent> = ({
   onCloseModal,
 }) => {
   const [error, setError] = useState("");
+
   let inputRef = useRef<HTMLInputElement | null>(null);
+  let modalRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as HTMLInputElement)
+      ) {
+        onCloseModal();
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef]);
 
   const handleAddTask = () => {
     const value = inputRef.current?.value || "";
@@ -29,7 +49,7 @@ const AddModalComponent: React.FC<IAddModalComponent> = ({
 
   return (
     <div className="add-modal">
-      <div className="add-modal__container">
+      <div className="add-modal__container" ref={modalRef}>
         <div className="add-modal__topline">
           <div className="add-modal__label">Краткое описание</div>
 
