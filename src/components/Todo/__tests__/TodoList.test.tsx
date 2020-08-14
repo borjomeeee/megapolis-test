@@ -1,17 +1,15 @@
 import React from "react";
-import { Store, createStore } from "redux";
+import { createStore } from "redux";
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 
 import renderer from "react-test-renderer";
 
 import reducer, { IInitialState } from "../../../store/reducer";
 
 import TodoListComponent from "../TodoList.component";
-
-import { IAction } from "../../../store/actionsTypes";
 
 describe("todo list tests", () => {
   it("render correctly", () => {
