@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import TodoListItemComponent from "./TodoListItem.component";
 
-import { IInitialState } from "../../store";
+import { IInitialState } from "../../store/reducer";
 
 import { ITodoItem } from "../../models/TodoItem.model";
 

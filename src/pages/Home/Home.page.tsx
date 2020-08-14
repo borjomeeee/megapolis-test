@@ -6,7 +6,7 @@ import TodoListComponent from "../../components/Todo/TodoList.component";
 import AddModalComponent from "../../components/Modal/AddModal.component";
 
 import { createTaskAction } from "../../store/actions";
-import { IInitialState } from "../../store";
+import { IInitialState } from "../../store/reducer";
 
 const HomePage: React.FC<ConnectedProps<typeof connector>> = ({
   isLoading,

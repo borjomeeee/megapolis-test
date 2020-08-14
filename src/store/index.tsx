@@ -6,15 +6,6 @@ import rootSaga from "./saga";
 
 import reducer from "./reducer";
 
-import { ITodoItem } from "../models/TodoItem.model";
-
-export const initialState = {
-  tasks: [] as ITodoItem[],
-  error: "",
-  isLoading: true,
-};
-export type IInitialState = typeof initialState;
-
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(

@@ -10,7 +10,7 @@ import {
 
 import * as Pages from "../pages";
 
-import { IInitialState } from "../store";
+import { IInitialState } from "../store/reducer";
 
 import { downloadTasksAction } from "../store/actions";
 

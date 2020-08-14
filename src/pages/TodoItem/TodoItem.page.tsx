@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { connect, ConnectedProps } from "react-redux";
 
-import { IInitialState } from "../../store";
+import { IInitialState } from "../../store/reducer";
 
 import { ITodoItem } from "../../models/TodoItem.model";
 

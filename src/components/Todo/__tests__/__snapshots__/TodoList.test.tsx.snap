@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`todo list tests render correctly 1`] = `
+<table
+  className="todo-list"
+>
+  <tbody>
+    <tr
+      className="todo-item todo-list__row"
+    >
+      <td
+        className="todo-item__col"
+      >
+        Задача №1
+      </td>
+      <td
+        className="todo-item__col"
+        width="70%"
+      >
+        Descr 1
+      </td>
+      <td
+        className="todo-item__col"
+        width="100px"
+      >
+        <div
+          className="todo-item__change-container"
+        >
+          <div
+            className="todo-item__icon todo-item__icon_edit"
+          >
+            <IconSvg
+              onClick={[Function]}
+            />
+          </div>
+          <div
+            className="todo-item__icon todo-item__icon_remove"
+          >
+            <IconSvg
+              onClick={[Function]}
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr
+      className="todo-item todo-list__row"
+    >
+      <td
+        className="todo-item__col"
+      >
+        Задача №2
+      </td>
+      <td
+        className="todo-item__col"
+        width="70%"
+      >
+        Descr 2
+      </td>
+      <td
+        className="todo-item__col"
+        width="100px"
+      >
+        <div
+          className="todo-item__change-container"
+        >
+          <div
+            className="todo-item__icon todo-item__icon_edit"
+          >
+            <IconSvg
+              onClick={[Function]}
+            />
+          </div>
+          <div
+            className="todo-item__icon todo-item__icon_remove"
+          >
+            <IconSvg
+              onClick={[Function]}
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr
+      className="todo-item todo-list__row"
+    >
+      <td
+        className="todo-item__col"
+      >
+        Задача №3
+      </td>
+      <td
+        className="todo-item__col"
+        width="70%"
+      >
+        Descr 3
+      </td>
+      <td
+        className="todo-item__col"
+        width="100px"
+      >
+        <div
+          className="todo-item__change-container"
+        >
+          <div
+            className="todo-item__icon todo-item__icon_edit"
+          >
+            <IconSvg
+              onClick={[Function]}
+            />
+          </div>
+          <div
+            className="todo-item__icon todo-item__icon_remove"
+          >
+            <IconSvg
+              onClick={[Function]}
+            />
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

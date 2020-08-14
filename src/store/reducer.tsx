@@ -1,9 +1,14 @@
-import { initialState, IInitialState } from ".";
-
 import { IAction } from "./actionsTypes";
 import * as ACTIONS from "./types";
 
 import { ITodoItem } from "../models/TodoItem.model";
+
+const initialState = {
+  tasks: [] as ITodoItem[],
+  error: "",
+  isLoading: true,
+};
+export type IInitialState = typeof initialState;
 
 export default (
   state: IInitialState = initialState,
